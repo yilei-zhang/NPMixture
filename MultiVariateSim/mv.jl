@@ -80,6 +80,32 @@ wf2_mean = mean(wf2s_pdf, dims=3)
 
 
 ### plot true density and fitted density
+using PyCall
+v = (elev=61.46284841009288, azim=-110.63222422866524, roll=4.724742314259799,
+    xlim=(-8.020833333333334, 8.020833333333334),
+    ylim=(-8.020833333333334, 8.020833333333334),
+    zlim=(-0.0016509075310692665, 0.08089446903656264),
+    aspect=[1.1904761932899772, 1.1904761932899772, 0.892857144967483])
+
+function set_view!(ax, v)
+    if v.roll === nothing
+        ax.view_init(v.elev, v.azim)
+    else
+        ax.view_init(v.elev, v.azim, roll=v.roll)
+    end
+    ax.set_xlim3d(v.xlim)
+    ax.set_ylim3d(v.ylim)
+    ax.set_zlim3d(v.zlim)
+    if v.aspect !== nothing && pyhasattr(ax, "set_box_aspect")
+        ax.set_box_aspect(v.aspect)
+    end
+    return ax
+end
+
+if !isdefined(Main, :pyhasattr)
+    pyhasattr(obj, name::AbstractString) = pybuiltin(:hasattr)(obj, name)
+end
+
 fig = figure(1, figsize=(8, 6.5)); clf();
 ax = fig.add_subplot(111, projection="3d")
 true_f = pdf(true_gmm, xygrid)
@@ -89,11 +115,12 @@ fig.patch.set_alpha(0.0)
 ax.patch.set_alpha(0.0)
 ax.grid(false)
 ax.set_axis_off()
+set_view!(ax, v)
 fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
 ax.set_position([-0.29, -0.1, 1.5, 1.52])
 fig.canvas.draw() 
 bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-savefig("true_f_1.4_ex2.png", transparent=true, dpi=300, bbox_inches=bbox, pad_inches=0)
+savefig("true_f.png", transparent=true, dpi=300, bbox_inches=bbox, pad_inches=0)
 
 ####### wf1
 fig2 = figure(2, figsize=(8, 6.5)); clf();
@@ -104,6 +131,7 @@ fig2.patch.set_alpha(0.0)
 ax2.patch.set_alpha(0.0)
 ax2.grid(false)
 ax2.set_axis_off()
+set_view!(ax2, v)
 fig2.subplots_adjust(left=0, right=1, bottom=0, top=1)
 ax2.set_position([-0.29, -0.1, 1.5, 1.52])
 fig2.canvas.draw() 
@@ -120,8 +148,44 @@ fig3.patch.set_alpha(0.0)
 ax3.patch.set_alpha(0.0)
 ax3.grid(false)
 ax3.set_axis_off()
+set_view!(ax3, v)
 fig3.subplots_adjust(left=0, right=1, bottom=0, top=1)
 ax3.set_position([-0.29, -0.1, 1.5, 1.52])
 fig3.canvas.draw()
-bbox = ax3.get_window_extent().transformed(fig2.dpi_scale_trans.inverted())
+bbox = ax3.get_window_extent().transformed(fig3.dpi_scale_trans.inverted())
 savefig("wf2.png", transparent=true, dpi=300, bbox_inches=bbox, pad_inches=0)
+
+
+img1 = imread("true_f.png")
+img2 = imread("wf1.png")
+img3 = imread("wf2.png")
+
+fig = figure(figsize=(12, 4))
+
+# Exact thirds
+w = 1 / 3
+ht = 0.92      # leave space at bottom for labels
+y0 = 0.08
+
+ax1 = fig.add_axes([0.000, y0, w, ht])
+ax2 = fig.add_axes([w, y0, w, ht])
+ax3 = fig.add_axes([2w, y0, w, ht])
+
+axs = (ax1, ax2, ax3)
+imgs = (img1, img2, img3)
+labels = ("True density",
+    "Fitted component 1 (weighted)",
+    "Fitted component 2 (weighted)")
+
+for (ax, img, lab) in zip(axs, imgs, labels)
+    ax.imshow(img)
+    ax.axis("off")
+
+    # label BELOW the image
+    ax.text(0.5, -0.06, lab,
+        transform=ax.transAxes,
+        ha="center", va="top", fontsize=17.5)
+end
+
+fig.patch.set_alpha(0.0)
+savefig("three_in_row_labeled.png", dpi=300, transparent=true, pad_inches=0)
