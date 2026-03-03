@@ -1,10 +1,23 @@
 include("MvMixDP_fixReg_noise.jl")
 
+println("Number of threads: ", Threads.nthreads())
+multithreads = true
+if length(ARGS) >= 1
+    arg = lowercase(ARGS[1])
+    if arg == "true"
+        multithreads = true
+    elseif arg == "false"
+        multithreads = false
+    else
+        error("Argument must be 'true' or 'false'. Example: julia mcmc.jl false")
+    end
+end
+println("Using threads: ", multithreads)
+
 burnin = 15000
 iteration = 25000
-thin = 10
+thin = 1
 sigma_P = 4.0
-multithreads = true
 
 dat = CSV.read("XMM.csv", DataFrame)
 n = 758869
