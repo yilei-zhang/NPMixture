@@ -3,9 +3,6 @@
 This repository contains the source code for the simulations and real-data applications in the paper
 
 > **A Bayesian Approach to Learning Mixtures of Nonparametric Components** 
->
-> [[arXiv:2512.12988]](https://arxiv.org/abs/2512.12988) 
-
 
 This repository implements the Bayesian MDPM framework proposed in the paper. It includes three simulation studies, and applications
 to astronomical and animal movement data.
