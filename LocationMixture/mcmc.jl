@@ -1,10 +1,23 @@
 include("MixDP.jl")
 include("DataGeneration.jl")
 
+println("Number of threads: ", Threads.nthreads())
+multithreads = true
+if length(ARGS) >= 1
+    arg = lowercase(ARGS[1])
+    if arg == "true"
+        multithreads = true
+    elseif arg == "false"
+        multithreads = false
+    else
+        error("Argument must be 'true' or 'false'. Example: julia mcmc.jl false")
+    end
+end
+println("Using threads: ", multithreads)
+
 burnin = 150000
 iteration = 450000
 thin = 20
-multithreads = true
 N = 10000
 seed1 = 69833
 seed2 = 78335
