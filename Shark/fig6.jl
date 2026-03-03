@@ -1,7 +1,7 @@
 include("MixDP.jl")
 
 df = CSV.read("sharkdata.csv", DataFrame)
-adsp = CSV.read("adsp.csv", DataFrame)
+adsp = CSV.read("adSP.csv", DataFrame)
 fpsp = CSV.read("fpSP.csv", DataFrame)
 
 samples = df[:, 1]
