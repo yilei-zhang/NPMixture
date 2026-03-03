@@ -2,4 +2,5 @@ results/*.jld2
 Shark/*.csv
 XMM/*.csv
 .DS_Store
+Manifest.toml
 ACC
