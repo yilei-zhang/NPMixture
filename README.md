@@ -100,8 +100,11 @@ Disabling multi-threading may lead to slight numerical differences.
 
 
 ### Figure 3
-By default, this simulation does not use multi-threading.  
-Run the following commands to reproduce the results exactly:
+The multivariate MDPM implementation relies on the R package `TruncatedNormal` via the `RCall` interface. To enable this functionality, R must be installed on your system. Before running the Julia scripts, install the required R package by executing the following command in an R session:
+```r
+install.packages("TruncatedNormal")
+```
+By default, this simulation does not use multi-threading. Run the following commands to reproduce the results exactly:
 ```bash
 cd Multivariate
 julia --project=.. mcmc.jl   ## generates mv_mcmc.jld2 in results/
@@ -112,7 +115,7 @@ julia --project=.. fig3.jl   ## generates fig3a.png, fig3b.png, fig3c.png and fi
 
 ### XMM Astronomical Data
 To reproduce Figures 4 and 5, the dataset `XMM.csv` must be placed in the `XMM/` directory.  The dataset is available from the authors upon request.
-
+This section also requires the R package `TruncatedNormal` to be installed, as described in the Figure 3 section. 
 Run the following commands to reproduce the results exactly:
 
 ```bash
