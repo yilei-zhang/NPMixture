@@ -1,9 +1,22 @@
 include("MvMixDP.jl")
 
+println("Number of threads: ", Threads.nthreads())
+multithreads = false
+if length(ARGS) >= 1
+    arg = lowercase(ARGS[1])
+    if arg == "true"
+        multithreads = true
+    elseif arg == "false"
+        multithreads = false
+    else
+        error("Argument must be 'true' or 'false'. Example: julia mcmc.jl false")
+    end
+end
+println("Using threads: ", multithreads)
+
 burnin = 100000
 iteration = 150000
 thin = 10
-multithreads = false
 seed = 69480
 
 rng = MersenneTwister(73)
