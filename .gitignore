@@ -1,0 +1,4 @@
+results/*.jld2
+shark/*.csv
+XMM/*.csv
+.DS_Store
