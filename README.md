@@ -22,7 +22,6 @@ NPMixture/
 ├── Shark/             # Shark acceleration data application (Figure 6)
 ├── results/           # Generated figures and outputs
 ├── Project.toml       # Julia project environment
-├── Manifest.toml      # Exact dependency versions
 ├── LICENSE
 └── README.md
 ```
