@@ -3,6 +3,8 @@
 This repository contains the source code for the simulations and real-data applications in the paper
 
 > **A Bayesian Approach to Learning Mixtures of Nonparametric Components** 
+>
+> *(Paper link will be added after review.)*
 
 This repository implements the Bayesian MDPM framework proposed in the paper. It includes three simulation studies, and applications
 to astronomical and animal movement data.
@@ -26,7 +28,7 @@ NPMixture/
 
 ## Setup
 
-1. Install Julia (tested with Julia version 1.12.1).
+1. [Install](https://julialang.org/downloads/) Julia. The code has been tested with version 1.12.1.
 
 2. Clone the repository:
 
@@ -39,7 +41,7 @@ cd NPMixture
 ```bash
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 ```
-This command installs all package dependencies specified in `Project.toml` and `Manifest.toml`. 
+This command installs all package dependencies specified in `Project.toml`. 
 To view all installed dependencies, run:
 ```bash
 julia --project=. -e 'using Pkg; Pkg.status()'
