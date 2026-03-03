@@ -38,7 +38,7 @@ green = "#2ca02c"
 red = "#d62728"
 
 fig, ax = subplots(figsize=(8, 4))
-title = "True densities (n=10,000)"
+title = "True densities"
 ind = findall(x -> x>=-15 && x<=15, x)
 Xind = findall(x -> x>=-15 && x<=15, X)
 mix = mixture_pdf_on_grid(x[ind], [P_spike[ind], P_slab[ind]], collect(w))
@@ -47,7 +47,7 @@ ax.plot(x[ind], P_spike[ind]; color=orange, linestyle="--", alpha=0.95, label=L"
 ax.plot(x[ind], P_slab[ind]; color=green, linestyle="--", alpha=0.95, label=L"$f_2$ ($w_2$" * "=$(collect(w)[2]))")
 ax.set_title(title); ax.legend(frameon=false)
 ax.set_xlabel("x"); ax.set_ylabel("density")
-ax.hist(X[Xind]; bins=130, color=red, density=true, alpha=0.25, label="sample hist")
+ax.hist(X[Xind]; bins=130, color=red, density=true, alpha=0.25, label="sample hist (n=10k)")
 ax.legend(frameon=false)
 #savefig("../results/fig2c.png", dpi=300, bbox_inches="tight", pad_inches=0.05)
 savefig("../results/fig2c.pdf", bbox_inches="tight", pad_inches=0.05)
