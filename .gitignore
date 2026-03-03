@@ -1,4 +1,5 @@
 results/*.jld2
-shark/*.csv
+Shark/*.csv
 XMM/*.csv
 .DS_Store
+ACC
