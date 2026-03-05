@@ -31,12 +31,12 @@ samples = sample_mixture(N; w=w, lp_paras=[6.3, 1.1], sep_paras=[0.9, 1.1, 0.7, 
     xgrid=x, Ps=Ps, specs=specs, coeffs_list=coeffs, seed=seed2)
 
 
-w = [0.4, 0.4, 0.2]
-c = [-3.0, 0., 3.0]
-r = [1.0, 1.0, 1.0]
+w0 = [0.4, 0.4, 0.2]
+c0 = [-3.0, 0., 3.0]
+r0 = [1.0, 1.0, 1.0]
 
 @time w_all, c_all, r_all, g_result, beta_all,
-phi_all, sigma_all, ind_all = MDP(samples; inits=(w, c, r), λ=2.0, ν=2, γ=2.0, vs=5., σs=0.35, wlb=0.1, 
+phi_all, sigma_all, ind_all = MDP(samples; inits=(w0, c0, r0), λ=2.0, ν=2, γ=2.0, vs=5., σs=0.35, wlb=0.1, 
     wub=0.9, burnin=burnin, iteration=iteration, thin=thin, multithreads=multithreads, seed=seed2)
 
 #println(w_all[end])
