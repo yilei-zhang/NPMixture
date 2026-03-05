@@ -30,16 +30,6 @@ w = [0.3, 0.35, 0.35]
 samples = sample_mixture(N; w=w, lp_paras=[6.3, 1.1], sep_paras=[0.9, 1.1, 0.7, 0.7],
     xgrid=x, Ps=Ps, specs=specs, coeffs_list=coeffs, seed=seed2)
 
-pdf1 = pdf.(SkewedExponentialPower(0.9, 1.1, 0.7, 0.7), x)
-pdf2 = pdf.(Laplace(6.3, 1.1), x)
-pdfs = [pdf1, pdf2]
-
-blue = "#1f77b4"
-orange = "#ff7f0e"
-green = "#2ca02c"
-red = "#d62728"
-purple = "#9467bd"
-brown = "#8c564b"
 
 w = [0.4, 0.4, 0.2]
 c = [-3.0, 0., 3.0]
