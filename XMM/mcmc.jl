@@ -25,7 +25,7 @@ xy_dat = Matrix{Float64}(undef, n, 2)
 xy_dat[:, 1] = dat[:, 1]
 xy_dat[:, 2] = dat[:, 2]
 
-w = [3 / 10, 1 / 2, 1 / 5]
+w0 = [3 / 10, 1 / 2, 1 / 5]
 c1 = [121.0 124.2]
 r1 = [3.0 2.2]
 c2 = [121.0 128.2]
@@ -39,7 +39,7 @@ P0=PDMat(Matrix{Float64}(sigma_P * I, 2, 2))
 
 #### running MCMC 
 @time w_all, g_result, β_all,
-ϕ_all, Σ_all, ind_all = MvMDP_fixReg_noise(xy_dat; w=w, c=c, r=r, R=R, σ0=σ0, P0=P0,
+ϕ_all, Σ_all, ind_all = MvMDP_fixReg_noise(xy_dat; w=w0, c=c, r=r, R=R, σ0=σ0, P0=P0,
     burnin=burnin, iteration=iteration, thin=thin, multithreads=multithreads, seed=3793)
 
 results = (c, r, σ0, P0, w_all, g_result, β_all, ϕ_all, Σ_all, ind_all)
