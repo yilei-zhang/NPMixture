@@ -2,15 +2,14 @@
 
 This repository contains the source code for the simulations and real-data applications in the paper
 
-> **A Bayesian Approach to Learning Mixtures of Nonparametric Components** 
+> **A Bayesian approach to learning mixtures of nonparametric components** 
 >
 > *(Paper link will be added after review.)*
 
-This repository implements the Bayesian MDPM framework proposed in the paper. It includes three simulation studies, and applications
-to astronomical and animal movement data.
+This repository implements the Bayesian MDPM framework proposed in the paper. It includes three simulation studies, and applications to astronomical and animal movement data.
 
 
-## Repository Structure
+## Repository structure
 
 ```bash
 NPMixture/
@@ -110,9 +109,9 @@ julia --project=.. mcmc.jl   ## generates mv_mcmc.jld2 in results/
 julia --project=.. fig3.jl   ## generates fig3a.png, fig3b.png, fig3c.png and fig3.pdf in results/
 ```
 
-## Real Data Applications
+## Real data applications
 
-### XMM Astronomical Data
+### XMM astronomical data
 To reproduce Figures 4 and 5, the dataset `XMM.csv` must be placed in the `XMM/` directory.  The dataset is available from the authors upon request.
 This section also requires the R package `TruncatedNormal` to be installed, as described in the Figure 3 section. 
 Run the following commands to reproduce the results exactly:
@@ -123,7 +122,7 @@ julia --threads=4 --project=.. mcmc.jl      ## generates xmm_full_mcmc.jld2 in r
 julia --project=.. fig4and5.jl              ## generates fig4.pdf and fig5.pdf in results/
 ```
 
-### Whitetip Shark Acceleration Data
+### Whitetip shark acceleration data
 To reproduce Figure 6, the datasets `sharkdata.csv`, `adSP.csv`, and `fpSP.csv` must be placed in the `Shark/` directory.  These datasets are available from the authors upon request.
 
 Run the following commands to reproduce the results exactly:
