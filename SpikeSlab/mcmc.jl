@@ -56,11 +56,11 @@ X, z = sample_two_component_mixture(N;
 σl = 0.5
 σu = 3.0
 
-w = [0.6, 0.4]
-c = 0.
-r = 20.
+w0 = [0.6, 0.4]
+c0 = 0.
+r0 = 20.
 @time w_all, g_result, beta_all,
-phi_all, sigma_all, ind_all = MDP_sigma(X; inits=(w, c, r), burnin=burnin, iteration=iteration, thin=thin,
+phi_all, sigma_all, ind_all = MDP_sigma(X; inits=(w0, c0, r0), burnin=burnin, iteration=iteration, thin=thin,
                                 wlb = 0.1, wub = 0.9, σl=σl, σu=σu, σ0=3.0, vs=6., σs=0.7, multithreads=multithreads,seed=seed2)
 
 results = (w_all, g_result, beta_all, phi_all, sigma_all, ind_all)
