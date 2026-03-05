@@ -34,8 +34,8 @@ c = [c1; c2]
 r = [r1; r2]
 
 R = (14.68466 + 14.6579) / 2 * (13.1059 + 13.03028) / 2
-σ0=1.2
-P0=PDMat(Matrix{Float64}(sigma_P * I, 2, 2))
+σ0 = 1.2
+P0 = PDMat(Matrix{Float64}(sigma_P * I, 2, 2))
 
 #### running MCMC 
 @time w_all, g_result, β_all,
